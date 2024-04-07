@@ -15,10 +15,9 @@
   <link rel="stylesheet" href="./style.css" />
   <title>Crack the Code</title>
   <body
-    class="font-inter m-0 mx-auto flex h-[100svh] w-full max-w-md flex-col bg-slate-200 text-base font-normal dark:bg-slate-800"
+    class="font-inter m-0 mx-auto flex h-[100svh] w-full max-w-xl flex-col bg-slate-200 text-base font-normal dark:bg-slate-800"
   >
     <header class="flex items-center text-black dark:text-white">
-      <h1 class="flex-1 pl-4 text-xl">Crack the Code</h1>
       <button
         id="replay"
         class="flex h-14 w-14 place-content-center place-items-center transition-all hover:text-blue-500"
@@ -39,6 +38,7 @@
           ></path>
         </svg>
       </button>
+      <h1 class="flex-1 text-center">Crack the Code</h1>
       <button
         id="remix"
         class="flex h-14 w-14 place-content-center place-items-center transition-all hover:text-blue-500"
@@ -91,11 +91,11 @@
         <input
           readonly
           id="code"
-          class="h-12 w-32 flex-grow rounded-lg bg-slate-300 text-center text-2xl text-black dark:bg-slate-700 dark:text-white"
+          class="flex-basis-0 h-12 w-0 flex-shrink flex-grow rounded-lg border-0 bg-slate-300 text-center text-2xl text-black dark:bg-slate-700 dark:text-white"
         />
         <button
           id="submit"
-          class="flex h-12 w-12 place-content-center place-items-center rounded-lg bg-slate-900 text-center text-2xl text-white dark:bg-slate-100 dark:text-black"
+          class="flex h-12 w-12 flex-shrink-0 place-content-center place-items-center rounded-lg bg-slate-900 text-center text-2xl text-white dark:bg-slate-100 dark:text-black"
         >
           <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path
