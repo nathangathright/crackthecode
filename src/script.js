@@ -5,6 +5,7 @@ const replayButton = document.querySelector("#replay");
 const remixButton = document.querySelector("#remix");
 const backspaceButton = document.querySelector("#backspace");
 const hasFourDigits = () => code.value.length === 4;
+let hasWon = false;
 
 const urlParams = new URLSearchParams(window.location.search);
 const game = urlParams.get("game");
@@ -30,6 +31,7 @@ if (guessesArray.length) {
     messages.push(`${guess}`);
     const correctDigits = numCorrectDigits(guess);
     if (correctDigits === 4) {
+      hasWon = true;
       let nGuesses =
         guessesArray.length === 1
           ? `${guessesArray.length} guess`
@@ -40,6 +42,8 @@ if (guessesArray.length) {
       messages.push(
         "Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.",
       );
+      // Disable the keyboard
+      keyboardButtons.forEach((button) => (button.disabled = true));
     } else {
       let isSingular = correctDigits === 1;
       let plural = isSingular ? "digit was" : "digits were";
@@ -111,8 +115,11 @@ const updateKeyboard = () => {
   const inputLength = code.value.length || 0;
   keyboardButtons.forEach((button) => {
     button.disabled = false;
+    submitButton.disabled = true;
+    if (hasWon) button.disabled = true;
     if (inputLength === 4) {
       button.disabled = true;
+      submitButton.disabled = false;
       return;
     }
     if (inputLength === 3) {
@@ -138,13 +145,21 @@ keyboardButtons.forEach((button) => {
 });
 
 document.addEventListener("keydown", (event) => {
+  if (hasWon) return;
+
   if (event.key >= 0 && event.key <= 9) {
     if (hasFourDigits()) return;
     code.value += event.key;
   }
+
   if (event.key === "Backspace") {
     code.value = code.value.slice(0, -1);
     updateKeyboard();
+  }
+
+  if (event.key === "Enter") {
+    if (!hasFourDigits()) return;
+    submitButton.click();
   }
 });
 
