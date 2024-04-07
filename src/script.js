@@ -20,7 +20,7 @@ const numCorrectDigits = (guess) => {
 };
 
 let messages = [
-  "Can you crack the code? Guess a 4 digit number, and I'll tell you how many digits are in the correct position.",
+  "Can you crack the code? After each 4-digit guess, I'll tell you how many digits are in the correct position.",
   "As you enter each digit, the numeric keyboard will update to show you which digits are still available.",
   "The logic to update the keyboard is still a work in progress. Good luck!",
 ];
