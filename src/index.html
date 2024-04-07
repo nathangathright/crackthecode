@@ -17,10 +17,69 @@
   <body
     class="font-inter m-0 mx-auto flex h-[100svh] w-full max-w-md flex-col bg-slate-200 text-base font-normal"
   >
-    <header class="flex items-center gap-2 px-4">
-      <h1 class="flex-1 text-xl">Crack the Code</h1>
-      <button id="replay" class="h-12 text-center text-2xl">🔄</button>
-      <button id="remix" class="h-12 text-center text-2xl">🔀</button>
+    <header class="flex items-center">
+      <h1 class="flex-1 pl-4 text-xl">Crack the Code</h1>
+      <button
+        id="replay"
+        class="flex h-14 w-14 place-content-center place-items-center transition-all hover:text-blue-500"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M13 18.25A6.25 6.25 0 1 0 6.75 12v2.385m2.5-1.635L7 15.25l-2.25-2.5"
+          ></path>
+        </svg>
+      </button>
+      <button
+        id="remix"
+        class="flex h-14 w-14 place-content-center place-items-center transition-all hover:text-blue-500"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.75 5.75L19.25 8L16.75 10.25"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M16.75 13.75L19.25 16L16.75 18.25"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M4.75 16.25C12 16.25 8 8 19 8"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M12.75 14.5156C14.0508 15.4048 16.0069 16 19 16M4.75 7.75C4.75 7.75 7.01562 7.98438 8.23438 8.84375"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </button>
     </header>
     <section class="flex-grow basis-0 overflow-scroll bg-white">
       <main
@@ -36,9 +95,24 @@
         />
         <button
           id="submit"
-          class="h-12 w-12 rounded-lg bg-slate-900 text-center text-2xl text-white"
+          class="flex h-12 w-12 place-content-center place-items-center rounded-lg bg-slate-900 text-center text-2xl text-white"
         >
-          →
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M13.75 6.75L19.25 12L13.75 17.25"
+            ></path>
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M19 12H4.75"
+            ></path>
+          </svg>
         </button>
       </div>
       <div class="grid grid-cols-3 place-content-center justify-center gap-1">
