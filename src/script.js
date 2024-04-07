@@ -56,6 +56,8 @@ messages.forEach((message) => {
     "rounded-3xl",
     "px-4",
     "py-2",
+    "text-black",
+    "dark:text-white",
   );
   if (message.length === 4) {
     bubble.classList.add(
@@ -67,6 +69,7 @@ messages.forEach((message) => {
   } else {
     bubble.classList.add(
       "bg-slate-300",
+      "dark:bg-slate-700",
       "text-slate-900",
       "self-start",
       "rounded-bl-1",
