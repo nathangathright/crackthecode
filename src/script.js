@@ -167,7 +167,7 @@ submitButton.addEventListener("click", () => {
 
 replayButton.addEventListener("click", () => {
   window.location
-    .assign(window.location.origin)
+    .assign(window.location.origin + window.location.pathname)
     .catch((err) => console.error("An error occurred", err));
 });
 
