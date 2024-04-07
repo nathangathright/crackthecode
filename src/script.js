@@ -30,11 +30,15 @@ if (guessesArray.length) {
     messages.push(`${guess}`);
     const correctDigits = numCorrectDigits(guess);
     if (correctDigits === 4) {
+      let nGuesses =
+        guessesArray.length === 1
+          ? `${guessesArray.length} guess`
+          : `${guessesArray.length} guesses`;
       messages.push(
-        `Congratulations! You've cracked the code! 🎉 It took you ${guessesArray.length} guesses.`,
+        `Congratulations! You've cracked the code! 🎉 It took you ${nGuesses}.`,
       );
       messages.push(
-        "Tap the 🔄 button to play again. Tap the 🔀 button to create your own code.",
+        "Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.",
       );
     } else {
       let isSingular = correctDigits === 1;
@@ -161,7 +165,7 @@ submitButton.addEventListener("click", () => {
     `${guesses ? guesses + "-" : ""}${latestGuess}`,
   );
   window.location
-    .assign(url)
+    .replace(url)
     .catch((err) => console.error("An error occurred", err));
 });
 
