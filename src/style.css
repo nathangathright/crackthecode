@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .rounded-br-1 {
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  .rounded-bl-1 {
+    border-bottom-left-radius: 0.25rem;
+  }
+}

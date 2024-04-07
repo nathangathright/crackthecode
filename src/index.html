@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="overflow-hidden bg-slate-50">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./style.css" />
+  <title>Crack the Code</title>
+  <body
+    class="font-inter m-0 mx-auto flex h-screen w-full max-w-md flex-col bg-slate-200 text-base font-normal"
+  >
+    <header class="flex items-center gap-2 px-4">
+      <h1 class="flex-1 text-xl">Crack the Code</h1>
+      <button id="replay" class="h-12 text-center text-2xl">🔄</button>
+      <button id="remix" class="h-12 text-center text-2xl">🔀</button>
+    </header>
+    <section class="flex-grow basis-0 overflow-scroll bg-white">
+      <main
+        class="flex flex-col place-content-end place-items-start gap-2 p-4"
+      ></main>
+    </section>
+    <footer id="keyboard" class="flex flex-col gap-4 p-4" style="top: 100%">
+      <div class="flex gap-4">
+        <input
+          readonly
+          id="code"
+          class="h-12 w-32 flex-grow rounded-lg bg-slate-300 text-center text-2xl"
+        />
+        <button
+          id="submit"
+          class="h-12 w-12 rounded-lg bg-slate-900 text-center text-2xl text-white"
+        >
+          →
+        </button>
+      </div>
+      <div class="grid grid-cols-3 place-content-center justify-center gap-1">
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="1"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="2"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="3"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="4"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="5"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="6"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="7"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="8"
+        />
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="9"
+        />
+        <div id="spacer"></div>
+        <input
+          type="button"
+          class="border-1 h-12 flex-grow rounded-lg border-white bg-white text-2xl transition-all disabled:opacity-10"
+          name="keyboard"
+          value="0"
+        />
+        <button id="backspace" class="h-12 flex-grow text-2xl">⌫</button>
+      </div>
+    </footer>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
