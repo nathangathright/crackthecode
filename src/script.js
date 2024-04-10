@@ -33,7 +33,8 @@ let messages = [
 ];
 
 const urlParams = new URLSearchParams(window.location.search);
-const game = urlParams.get("game");
+let game = urlParams.get("game");
+game = game ? game.replace(/🔑/g, "").replace(/🔒/g, "") : null;
 const secretCode = game ? atob(game) : Math.floor(1000 + Math.random() * 9000);
 if (!game) {
   window.location
