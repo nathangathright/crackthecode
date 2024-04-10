@@ -244,13 +244,25 @@ submitButton.addEventListener("click", () => {
         ? `${guesses.length} guess`
         : `${guesses.length} guesses`;
     appendMessage(
-      `You cracked the code in ${pluralCount}!${generateEmoji()}`,
+      `You cracked the code in ${pluralCount}!${generateEmoji()}<br><a href="#" id="clipboard" class="underline">Share your results</a>`,
       false,
     );
     appendMessage(
-      "Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.",
+      "Tap the 🔄 to play again or the 🔀 to create your own puzzle.",
       false,
     );
+
+    const clipboard = document.querySelector("#clipboard");
+    clipboard.addEventListener("click", (event) => {
+      event.preventDefault();
+      navigator.clipboard.writeText(
+        `${window.location.href}\n${generateEmoji()}`.replace(/<br>/g, "\n"),
+      );
+      clipboard.innerHTML = "Copied!";
+      setTimeout(() => {
+        clipboard.innerHTML = "Share your results";
+      }, 2000);
+    });
   } else {
     let count = combinations.length;
     let digits = correctDigits === 1 ? "digit" : "digits";
