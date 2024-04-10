@@ -37,7 +37,9 @@ const game = urlParams.get("game");
 const secretCode = game ? atob(game) : Math.floor(1000 + Math.random() * 9000);
 if (!game) {
   window.location
-    .assign(`${window.location.origin}?game=${btoa(secretCode).replace(/=+$/, "")}`)
+    .assign(
+      `${window.location.origin}?game=${btoa(secretCode).replace(/=+$/, "")}`,
+    )
     .catch((err) => console.error("An error occurred", err));
 }
 
@@ -81,11 +83,11 @@ const appendMessage = (message, isUser) => {
   }
   main.appendChild(bubble);
   section.scrollTop = section.scrollHeight;
-}
+};
 
 messages.forEach((message) => {
   appendMessage(message, false);
-})
+});
 
 const updateCombinations = (guess) => {
   // remove this guess from the list of combinations
@@ -100,10 +102,10 @@ const updateCombinations = (guess) => {
       combinations = combinations.filter((combo) => {
         let [w, x, y, z] = combo.split("").map((digit) => parseInt(digit));
         return (
-          a === w && b === x && c === y && d !== z ||
-          a === w && b === x && c !== y && d === z ||
-          a === w && c === y && b !== x && d === z ||
-          b === x && c === y && a !== w && d === z
+          (a === w && b === x && c === y && d !== z) ||
+          (a === w && b === x && c !== y && d === z) ||
+          (a === w && c === y && b !== x && d === z) ||
+          (b === x && c === y && a !== w && d === z)
         );
       });
       break;
@@ -112,12 +114,12 @@ const updateCombinations = (guess) => {
       combinations = combinations.filter((combo) => {
         let [w, x, y, z] = combo.split("").map((digit) => parseInt(digit));
         return (
-          a === w && b === x && c !== y && d !== z ||
-          a === w && b !== x && c === y && d !== z ||
-          a === w && b !== x && c !== y && d === z ||
-          a !== w && b === x && c === y && d !== z ||
-          a !== w && b === x && c !== y && d === z ||
-          a !== w && b !== x && c === y && d === z
+          (a === w && b === x && c !== y && d !== z) ||
+          (a === w && b !== x && c === y && d !== z) ||
+          (a === w && b !== x && c !== y && d === z) ||
+          (a !== w && b === x && c === y && d !== z) ||
+          (a !== w && b === x && c !== y && d === z) ||
+          (a !== w && b !== x && c === y && d === z)
         );
       });
       break;
@@ -126,10 +128,10 @@ const updateCombinations = (guess) => {
       combinations = combinations.filter((combo) => {
         let [w, x, y, z] = combo.split("").map((digit) => parseInt(digit));
         return (
-          a === w && b !== x && c !== y && d !== z ||
-          a !== w && b === x && c !== y && d !== z ||
-          a !== w && b !== x && c === y && d !== z ||
-          a !== w && b !== x && c !== y && d === z
+          (a === w && b !== x && c !== y && d !== z) ||
+          (a !== w && b === x && c !== y && d !== z) ||
+          (a !== w && b !== x && c === y && d !== z) ||
+          (a !== w && b !== x && c !== y && d === z)
         );
       });
       break;
@@ -137,16 +139,11 @@ const updateCombinations = (guess) => {
       // only keey combinations that have none of the digits from this guess in the same positions
       combinations = combinations.filter((combo) => {
         let [w, x, y, z] = combo.split("").map((digit) => parseInt(digit));
-        return (
-          a !== w &&
-          b !== x &&
-          c !== y &&
-          d !== z
-        );
+        return a !== w && b !== x && c !== y && d !== z;
       });
       break;
   }
-}
+};
 
 const updateAcceptableDigits = (partialguess) => {
   acceptableDigits = {
@@ -156,14 +153,16 @@ const updateAcceptableDigits = (partialguess) => {
     3: [],
   };
 
-  combinations.filter((combo) => combo.startsWith(partialguess)).forEach((combo) => {
-    combo.split("").forEach((digit, index) => {
-      if (!acceptableDigits[index].includes(parseInt(digit))) {
-        acceptableDigits[index].push(parseInt(digit));
-      }
+  combinations
+    .filter((combo) => combo.startsWith(partialguess))
+    .forEach((combo) => {
+      combo.split("").forEach((digit, index) => {
+        if (!acceptableDigits[index].includes(parseInt(digit))) {
+          acceptableDigits[index].push(parseInt(digit));
+        }
+      });
     });
-  });
-}
+};
 
 const updateKeyboard = () => {
   const inputLength = code.value.length || 0;
@@ -192,11 +191,10 @@ const generateEmoji = () => {
       } else {
         emoji += "🔒";
       }
-    }
-    );
+    });
   });
   return emoji;
-}
+};
 
 keyboardButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -241,14 +239,26 @@ submitButton.addEventListener("click", () => {
   const correctDigits = numCorrectDigits(guess);
   if (correctDigits === 4) {
     isVictorious = true;
-    let pluralCount = guesses.length === 1 ? `${guesses.length} guess` : `${guesses.length} guesses`;
-    appendMessage(`You cracked the code in ${pluralCount}!${generateEmoji()}`,false);
-    appendMessage("Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.", false);
+    let pluralCount =
+      guesses.length === 1
+        ? `${guesses.length} guess`
+        : `${guesses.length} guesses`;
+    appendMessage(
+      `You cracked the code in ${pluralCount}!${generateEmoji()}`,
+      false,
+    );
+    appendMessage(
+      "Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.",
+      false,
+    );
   } else {
     let count = combinations.length;
     let digits = correctDigits === 1 ? "digit" : "digits";
     let combos = count === 1 ? "combo" : "combos";
-    appendMessage(`${correctDigits} correct ${digits}! ${count} ${combos} remaining.`, false);
+    appendMessage(
+      `${correctDigits} correct ${digits}! ${count} ${combos} remaining.`,
+      false,
+    );
     updateKeyboard();
   }
 });

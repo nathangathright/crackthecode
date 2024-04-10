@@ -1,7 +1,10 @@
 <!doctype html>
 <html class="overflow-hidden bg-slate-50 dark:bg-slate-950">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
   <link
     rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>"
@@ -23,11 +26,35 @@
         class="flex h-14 w-14 place-content-center place-items-center transition-all hover:text-blue-500"
       >
         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.25 4.75L8.75 7L11.25 9.25"/>
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12.75 19.25L15.25 17L12.75 14.75"/>
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 7H13.25C16.5637 7 19.25 9.68629 19.25 13V13.25"/>
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.25 17H10.75C7.43629 17 4.75 14.3137 4.75 11V10.75"/>
-        </svg>      
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M11.25 4.75L8.75 7L11.25 9.25"
+          />
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M12.75 19.25L15.25 17L12.75 14.75"
+          />
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M9.75 7H13.25C16.5637 7 19.25 9.68629 19.25 13V13.25"
+          />
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M14.25 17H10.75C7.43629 17 4.75 14.3137 4.75 11V10.75"
+          />
+        </svg>
       </button>
       <h1 class="flex-1 text-center">Crack the Code</h1>
       <button
@@ -77,17 +104,17 @@
         class="flex flex-col place-content-end place-items-start gap-2 p-4"
       ></main>
     </section>
-    <footer id="keyboard" class="short:gap-1 short:p-4 flex flex-col gap-4 p-4">
-      <div class="short:gap-1 flex gap-4">
+    <footer id="keyboard" class="flex flex-col gap-4 p-4 short:gap-1 short:p-4">
+      <div class="flex gap-4 short:gap-1">
         <input
           readonly
           id="code"
-          class="flex-basis-0 short:h-8 short:text-sm h-12 w-0 flex-shrink flex-grow rounded-lg border-0 bg-slate-300 text-center text-2xl text-black dark:bg-slate-700 dark:text-white"
+          class="flex-basis-0 h-12 w-0 flex-shrink flex-grow rounded-lg border-0 bg-slate-300 text-center text-2xl text-black short:h-8 short:text-sm dark:bg-slate-700 dark:text-white"
         />
         <button
           disabled
           id="submit"
-          class="short:h-8 short:w-8 flex h-12 w-12 flex-shrink-0 place-content-center place-items-center rounded-lg bg-slate-900 text-center text-2xl text-white disabled:opacity-10 dark:bg-slate-100 dark:text-black"
+          class="flex h-12 w-12 flex-shrink-0 place-content-center place-items-center rounded-lg bg-slate-900 text-center text-2xl text-white disabled:opacity-10 short:h-8 short:w-8 dark:bg-slate-100 dark:text-black"
         >
           <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path
@@ -110,63 +137,63 @@
       <div class="grid grid-cols-3 place-content-center justify-center gap-1">
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key1"
           value="1"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key2"
           value="2"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key3"
           value="3"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key4"
           value="4"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key5"
           value="5"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key6"
           value="6"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key7"
           value="7"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key8"
           value="8"
         />
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key9"
           value="9"
@@ -174,14 +201,14 @@
         <div id="spacer"></div>
         <input
           type="button"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 dark:bg-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation rounded-lg bg-white text-2xl text-black transition-all disabled:opacity-10 short:h-8 short:text-sm dark:bg-black dark:text-white"
           name="keyboard"
           id="key0"
           value="0"
         />
         <button
           id="backspace"
-          class="touch-manipulation short:h-8 short:text-sm h-12 flex-grow text-2xl text-black dark:text-white"
+          class="h-12 flex-grow touch-manipulation text-2xl text-black short:h-8 short:text-sm dark:text-white"
         >
           ⌫
         </button>
