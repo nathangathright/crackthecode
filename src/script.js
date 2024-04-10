@@ -3,16 +3,32 @@ const submitButton = document.querySelector("#submit");
 const keyboardButtons = document.querySelectorAll("[name=keyboard]");
 const replayButton = document.querySelector("#replay");
 const remixButton = document.querySelector("#remix");
+const section = document.querySelector("section");
+const main = document.querySelector("main");
 const backspaceButton = document.querySelector("#backspace");
-const hasFourDigits = () => code.value.length === 4;
-let hasWon = false;
+let isVictorious = false;
+let guesses = [];
+let acceptableDigits = {
+  0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  2: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  3: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+};
+
+let messages = [
+  "Can you crack the code? After each 4-digit guess, I’ll tell you how many digits are in the correct position.",
+  "As you enter each digit, the numeric keyboard will update to show you which digits are still available.",
+  "The logic to update the keyboard is still a work in progress. Good luck!",
+];
 
 const urlParams = new URLSearchParams(window.location.search);
 const game = urlParams.get("game");
 const secretCode = game ? atob(game) : Math.floor(1000 + Math.random() * 9000);
-
-const guesses = urlParams.get("guesses");
-const guessesArray = guesses ? guesses.split("-") : [];
+if (!game) {
+  window.location
+    .assign(`${window.location.origin}?game=${btoa(secretCode).replace(/=+$/, "")}`)
+    .catch((err) => console.error("An error occurred", err));
+}
 
 const numCorrectDigits = (guess) => {
   return guess.split("").filter((digit, index) => {
@@ -20,41 +36,9 @@ const numCorrectDigits = (guess) => {
   }).length;
 };
 
-let messages = [
-  "Can you crack the code? After each 4-digit guess, I'll tell you how many digits are in the correct position.",
-  "As you enter each digit, the numeric keyboard will update to show you which digits are still available.",
-  "The logic to update the keyboard is still a work in progress. Good luck!",
-];
+const hasFourDigits = () => code.value.length === 4;
 
-if (guessesArray.length) {
-  guessesArray.forEach((guess) => {
-    messages.push(`${guess}`);
-    const correctDigits = numCorrectDigits(guess);
-    if (correctDigits === 4) {
-      hasWon = true;
-      let nGuesses =
-        guessesArray.length === 1
-          ? `${guessesArray.length} guess`
-          : `${guessesArray.length} guesses`;
-      messages.push(
-        `Congratulations! You've cracked the code! 🎉 It took you ${nGuesses}.`,
-      );
-      messages.push(
-        "Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.",
-      );
-      // Disable the keyboard
-      keyboardButtons.forEach((button) => (button.disabled = true));
-    } else {
-      let isSingular = correctDigits === 1;
-      let plural = isSingular ? "digit was" : "digits were";
-      messages.push(`${correctDigits} ${plural} in the correct position!`);
-    }
-  });
-}
-
-const section = document.querySelector("section");
-const main = document.querySelector("main");
-messages.forEach((message) => {
+const appendMessage = (message, isUser) => {
   const bubble = document.createElement("li");
   bubble.textContent = message;
   bubble.classList.add(
@@ -65,7 +49,7 @@ messages.forEach((message) => {
     "px-4",
     "py-2",
   );
-  if (message.length === 4) {
+  if (isUser) {
     bubble.classList.add(
       "bg-blue-500",
       "text-white",
@@ -85,38 +69,38 @@ messages.forEach((message) => {
     );
   }
   main.appendChild(bubble);
-});
-section.scrollTop = section.scrollHeight;
+  section.scrollTop = section.scrollHeight;
+}
 
-let acceptableDigits = {
-  0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  2: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  3: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-};
+messages.forEach((message) => {
+  appendMessage(message, false);
+})
 
-guessesArray.forEach((guess) => {
-  switch (numCorrectDigits(guess)) {
-    case 0:
-      guess.split("").forEach((digit, index) => {
-        acceptableDigits[index] = acceptableDigits[index].filter(
-          (acceptableDigit) => acceptableDigit !== parseInt(digit),
-        );
-      });
-      break;
-    case 1:
-      // determine which digits the user should be able to use
-      break;
-    // Add more cases as needed
-  }
-});
+const updateAcceptableDigits = () => {
+  guesses.forEach((guess) => {
+    switch (numCorrectDigits(guess)) {
+      case 0:
+        guess.split("").forEach((digit, index) => {
+          acceptableDigits[index] = acceptableDigits[index].filter(
+            (acceptableDigit) => acceptableDigit !== parseInt(digit),
+          );
+        });
+        break;
+      case 1:
+        // determine which digits the user should be able to use
+        break;
+      // Add more cases as needed
+    }
+  });
+}
 
 const updateKeyboard = () => {
+  updateAcceptableDigits();
   const inputLength = code.value.length || 0;
   keyboardButtons.forEach((button) => {
     button.disabled = false;
     submitButton.disabled = true;
-    if (hasWon) button.disabled = true;
+    if (isVictorious) button.disabled = true;
     if (inputLength === 4) {
       button.disabled = true;
       submitButton.disabled = false;
@@ -134,8 +118,6 @@ const updateKeyboard = () => {
   });
 };
 
-updateKeyboard();
-code.addEventListener("input", updateKeyboard);
 keyboardButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (hasFourDigits()) return;
@@ -145,20 +127,19 @@ keyboardButtons.forEach((button) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (hasWon) return;
+  if (isVictorious) return;
 
   if (event.key >= 0 && event.key <= 9) {
     if (hasFourDigits()) return;
     code.value += event.key;
-  }
-
-  if (event.key === "Backspace") {
-    code.value = code.value.slice(0, -1);
     updateKeyboard();
   }
 
+  if (event.key === "Backspace") {
+    backspaceButton.click();
+  }
+
   if (event.key === "Enter") {
-    if (!hasFourDigits()) return;
     submitButton.click();
   }
 });
@@ -170,18 +151,22 @@ backspaceButton.addEventListener("click", () => {
 
 submitButton.addEventListener("click", () => {
   if (!hasFourDigits()) return;
+  const guess = code.value;
+  guesses.push(guess);
+  appendMessage(guess, true);
+  code.value = "";
 
-  const latestGuess = code.value;
-  const url = new URL(window.location);
-  const encodedSecretCode = btoa(secretCode).replace(/=+$/, "");
-  url.searchParams.set("game", encodedSecretCode);
-  url.searchParams.set(
-    "guesses",
-    `${guesses ? guesses + "-" : ""}${latestGuess}`,
-  );
-  window.location
-    .replace(url)
-    .catch((err) => console.error("An error occurred", err));
+  const correctDigits = numCorrectDigits(guess);
+  if (correctDigits === 4) {
+    isVictorious = true;
+    let pluralCount = guesses.length === 1 ? `${guesses.length} guess` : `${guesses.length} guesses`;
+    appendMessage(`Congratulations! You’ve cracked the code! 🎉 It took you ${pluralCount}.`,false);
+    appendMessage("Tap the 🔄 button to play again. Tap the 🔀 button to create your own puzzle.", false);
+  } else {
+    let plural = correctDigits === 1 ? "" : "s";
+    appendMessage(`${correctDigits} correct digit${plural}`, false);
+    updateKeyboard();
+  }
 });
 
 replayButton.addEventListener("click", () => {
